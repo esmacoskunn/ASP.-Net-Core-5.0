@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.Blog
+
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Yeni Blog Girişi</h1>
+<br />
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))  //POST İŞLEMİ BLOGADD İÇİN YAPILACAK..BLOGADD NEREDE BLOG TA
+{
+    @Html.Label("Blog başlığı")
+    @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogTitle)
+    <br />
+
+    @Html.Label("Blog görseli")
+    @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogImage)
+    <br />
+
+    @Html.Label("Blog küçük görsel")
+    @Html.TextBoxFor(x => x.BlogThumbnilImage, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("kategori ")  //sqlden aldığım değeri burada yaazarsam bu değre de  googlede görülür..
+    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.cv, new {@class="form-control"})
+
+    <br />
+
+    @Html.Label("Blog içeriği")
+    @Html.TextAreaFor(x => x.BlogContent, 15, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogContent)
+    <br />
+
+    <button class="btn btn-info">Yazıyı kaydet   </button>
+
+
+
+
+
+}
